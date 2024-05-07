@@ -3,8 +3,9 @@ from .models import Movie, Genre
 # Register your models here.
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'daily_rate', 'number_in_stock', 'genre')
+    list_display = ('title', 'daily_rate', 'number_in_stock', 'genre')
     exclude = ('date_created', )
+    prepopulated_fields = {"slug": ('title', )}
     
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
