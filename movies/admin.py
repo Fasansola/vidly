@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie, Genre
+from .models import Movie, Genre, Renter
 # Register your models here.
 
 class MovieAdmin(admin.ModelAdmin):
@@ -10,5 +10,10 @@ class MovieAdmin(admin.ModelAdmin):
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
+class RenterAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+    filter_horizontal = ('movie', )
+
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Genre, GenreAdmin)
+admin.site.register(Renter, RenterAdmin)

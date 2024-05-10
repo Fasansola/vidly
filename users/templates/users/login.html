@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}User Login{% endblock title %}
+{% block body %}
+    <h1>Login</h1>
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    {% if logged_message %}
+        <div class="alert alert-success">{{ logged_message }}</div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="username" placeholder="Username">
+        <input class="form-control my-3" type="password" name="password" placeholder="Password">
+        <button class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}

@@ -19,3 +19,11 @@ class Movie(models.Model):
     
     def __str__(self):
         return self.title.capitalize()
+    
+class Renter(models.Model):
+    name = models.CharField(max_length=255)
+    movie = models.ManyToManyField(Movie, blank=True, related_name="renter")
+    
+    def __str__(self):
+        return self.name
+    

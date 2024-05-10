@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock title %}
+{% block body %}
+    <h1>Hello, {{ request.user.username.capitalize }}</h1>
+    <p><b>Name</b>: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+    <p><b>Email</b>: {{ request.user.email }}</p>
+    <a href="{% url 'logout' %}">Log out</a>
+{% endblock body %}

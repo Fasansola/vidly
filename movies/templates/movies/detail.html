@@ -12,4 +12,30 @@
     <p>Daily Rate: {{ movie.daily_rate }}</p>
     <p>Release Year: {{ movie.release_year }}</p>
 
+    <h2>Renters</h2>
+
+    <ul>
+        {% for renter in renters %}
+            <li>{{ renter.name }}</li>
+        {% empty %}
+            <p>No one has rented this movie</p>
+        {% endfor %}
+    </ul>
+
+    {% if non_renters %}
+      <h2>Rent this Movie</h2>
+
+      <form class="form" action="{% url "movies:rent" movie.slug %}" method="POST">
+          {% csrf_token %}
+          <select class="form-select" name="renter">
+              <option disabled selected>Select Passenger</option>
+              {% for renter in non_renters %}
+                  <option value={{ renter.id }}>{{renter.name}}</option>
+              {% endfor %}
+          </select>
+          <button class="btn btn-primary my-3" type="submit" class="blue monster">Submit</button>
+      </form>
+    {% endif %}
+
+    <a href="{% url 'movies:index' %}">Go Back to Movies List</a>
 {% endblock %}
